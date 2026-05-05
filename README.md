@@ -135,6 +135,12 @@ Validation:
 
 ---
 
+##  Conclusion
+
+This API successfully implements CRUD operations with validation, pagination, search, and proper error handling using Spring Boot and MySQL.
+
+---
+
 ## Group Member
 
 1. Muhammad Danial Asyraf Bin Azhar 304586 
@@ -144,7 +150,3 @@ Validation:
 5. Justin Abraham Unggun anak Numpang 306087 
 
 ---
-
-##  Conclusion
-
-This API successfully implements CRUD operations with validation, pagination, search, and proper error handling using Spring Boot and MySQL.
