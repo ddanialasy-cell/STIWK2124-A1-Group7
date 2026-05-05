@@ -10,8 +10,11 @@ export class BookService {
 
   constructor(private http: HttpClient) {}
 
-  getAllBooks(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl);
+  getBooks(page: number, size: number): Observable<any> {
+    const params = new HttpParams()
+      .set('page', page)
+      .set('size', size);
+    return this.http.get<any>(this.apiUrl, { params });
   }
 
   getBookById(id: number): Observable<any> {
@@ -30,14 +33,11 @@ export class BookService {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
-  searchBooks(title: string): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/search?title=${title}`);
-  }
-
-  getBooksWithPagination(page: number, size: number): Observable<any> {
+  searchBooks(q: string, page: number, size: number): Observable<any> {
     const params = new HttpParams()
+      .set('q', q)
       .set('page', page)
       .set('size', size);
-    return this.http.get<any>(`${this.apiUrl}/page`, { params });
+    return this.http.get<any>(this.apiUrl, { params });
   }
 }
