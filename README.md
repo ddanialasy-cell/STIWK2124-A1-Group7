@@ -43,42 +43,73 @@ Server: http://localhost:8080
 ### Create
 
 POST /api/books
+Content-Type: application/json
+
 {
-"title": "Clean Code",
-"author": "Robert C. Martin",
-"category": "Programming",
-"description": "Best coding practices"
+  "title": "Clean Code",
+  "author": "Robert C. Martin",
+  "category": "Programming",
+  "description": "A handbook of agile software craftsmanship"
 }
+
+Response: 201 Created
 
 ### Get All
 
-GET /api/books
+GET /api/books?page=0&size=5
+
+Response: 200 OK
+{
+  "content": [...],
+  "totalElements": 12,
+  "totalPages": 3,
+  "size": 5,
+  "number": 0
+}
+
+### Search Books (with pagination)
+
+GET /api/books?q=clean&page=0&size=5
+
+Response: 200 OK
+{
+  "content": [...],
+  "totalElements": 2,
+  "totalPages": 1
+}
 
 ### Get by ID
 
 GET /api/books/{id}
 
+Response: 200 OK
+Response: 404 Not Found (if book does not exist)
+
 ### Update
 
 PUT /api/books/{id}
+Content-Type: application/json
+
 {
-"title": "Updated Book",
-"author": "New Author",
-"category": "Education",
-"description": "Updated description"
+  "title": "Updated Title",
+  "author": "Updated Author",
+  "category": "Education",
+  "description": "Updated description here"
 }
+
+Response: 200 OK
+Response: 404 Not Found (if book does not exist)
 
 ### Delete
 
 DELETE /api/books/{id}
 
+Response: 204 No Content
+Response: 404 Not Found (if book does not exist)
+
 ### Pagination
 
 GET /api/books/page?page=0&size=2
-
-### Search
-
-GET /api/books/search?title=Clean
 
 ---
 
@@ -104,6 +135,15 @@ Validation:
 
 ---
 
+## Group Member
+
+1. Muhammad Danial Asyraf Bin Azhar 304586 
+2. Tan Jun Hao 305506 
+3. Ng Ee Jing 305874 
+4. Hazaruddin bin Mazlan 306120 
+5. Justin Abraham Unggun anak Numpang 306087 
+
+---
 
 ##  Conclusion
 
