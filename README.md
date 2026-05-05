@@ -44,7 +44,7 @@ POST /api/books
 
 {   
     "bookTitle": "Available", 
-    "bookDescription": "This book fucking sucks lmao", 
+    "bookDescription": "Thsi book is about coding", 
     "bookCategory": "Educational", 
     "bookGenre": "Comedy", 
     "bookPublishDate": "10/10/1010"
@@ -64,7 +64,7 @@ PUT /api/books/{id}
 
 {   
     "bookTitle": "Dead", 
-    "bookDescription": "This book so fucking sucks lmao", 
+    "bookDescription": "This book so horror", 
     "bookCategory": "Inspring", 
     "bookGenre": "Tradegy", 
     "bookPublishDate": "11/10/1010"
@@ -106,7 +106,16 @@ Validation:
 
 ---
 
-
 ##  Conclusion
 
 This API successfully implements CRUD operations with validation, pagination, search, and proper error handling using Spring Boot and MySQL.
+
+---
+
+## Group Member
+
+1. Muhammad Danial Asyraf Bin Azhar 304586 
+2. Tan Jun Hao 305506 
+3. Ng Ee Jing 305874 
+4. Hazaruddin bin Mazlan 306120 
+5. Justin Abraham Unggun anak Numpang 306087 
