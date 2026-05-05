@@ -13,6 +13,11 @@ It supports CRUD operations, validation, pagination, and search for managing boo
 Java, Spring Boot, Spring Data JPA, MySQL, Maven, Postman
 
 ---
+## Note
+This assignment focuses on backend only.
+
+The `arlfrontend` folder is optional and not required for Assignment 1.
+Only the backend (`arlbackend`) should be used for testing.
 
 ##  Setup
 
