@@ -4,6 +4,10 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/spec",
+<<<<<<< HEAD
+=======
+    "rootDir": "./src/app",
+>>>>>>> feature/add-new-book-modification
     "types": [
       "vitest/globals"
     ]

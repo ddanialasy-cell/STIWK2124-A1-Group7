@@ -16,6 +16,16 @@ export class BookListComponent implements OnInit {
   searchTitle: string = '';
   showForm: boolean = false;
   selectedBook: any = null;
+<<<<<<< HEAD
+=======
+  errorMessage: string = '';
+
+  // Pagination
+  currentPage: number = 0;
+  pageSize: number = 5;
+  totalPages: number = 0;
+  totalElements: number = 0;
+>>>>>>> feature/add-new-book-modification
 
   constructor(private bookService: BookService) {}
 
@@ -24,25 +34,77 @@ export class BookListComponent implements OnInit {
   }
 
   loadBooks(): void {
+<<<<<<< HEAD
     this.bookService.getAllBooks().subscribe(data => {
       this.books = data;
+=======
+    this.errorMessage = '';
+    this.bookService.getBooks(this.currentPage, this.pageSize).subscribe({
+      next: (data) => {
+        this.books = data.content;
+        this.totalPages = data.totalPages;
+        this.totalElements = data.totalElements;
+      },
+      error: () => {
+        this.errorMessage = 'Failed to load books. Is the backend running?';
+      }
+>>>>>>> feature/add-new-book-modification
     });
   }
 
   searchBooks(): void {
+<<<<<<< HEAD
     if (this.searchTitle.trim()) {
       this.bookService.searchBooks(this.searchTitle).subscribe(data => {
         this.books = data;
       });
     } else {
+=======
+    this.errorMessage = '';
+    if (this.searchTitle.trim()) {
+      this.currentPage = 0;
+      this.bookService.searchBooks(this.searchTitle, this.currentPage, this.pageSize).subscribe({
+        next: (data) => {
+          this.books = data.content;
+          this.totalPages = data.totalPages;
+          this.totalElements = data.totalElements;
+        },
+        error: () => {
+          this.errorMessage = 'Search failed. Please try again.';
+        }
+      });
+    } else {
+      this.currentPage = 0;
+>>>>>>> feature/add-new-book-modification
       this.loadBooks();
+    }
+  }
+
+<<<<<<< HEAD
+  deleteBook(id: number): void {
+    if (confirm('Delete this book?')) {
+      this.bookService.deleteBook(id).subscribe(() => {
+        this.loadBooks();
+=======
+  goToPage(page: number): void {
+    if (page >= 0 && page < this.totalPages) {
+      this.currentPage = page;
+      if (this.searchTitle.trim()) {
+        this.searchBooks();
+      } else {
+        this.loadBooks();
+      }
     }
   }
 
   deleteBook(id: number): void {
     if (confirm('Delete this book?')) {
-      this.bookService.deleteBook(id).subscribe(() => {
-        this.loadBooks();
+      this.bookService.deleteBook(id).subscribe({
+        next: () => this.loadBooks(),
+        error: (err) => {
+          this.errorMessage = err.error?.message || 'Failed to delete book.';
+        }
+>>>>>>> feature/add-new-book-modification
       });
     }
   }

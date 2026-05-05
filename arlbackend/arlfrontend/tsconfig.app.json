@@ -4,6 +4,10 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/app",
+<<<<<<< HEAD
+=======
+    "rootDir": "./src",
+>>>>>>> feature/add-new-book-modification
     "types": [
       "node"
     ]

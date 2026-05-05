@@ -10,8 +10,16 @@ export class BookService {
 
   constructor(private http: HttpClient) {}
 
+<<<<<<< HEAD
   getAllBooks(): Observable<any[]> {
     return this.http.get<any[]>(this.apiUrl);
+=======
+  getBooks(page: number, size: number): Observable<any> {
+    const params = new HttpParams()
+      .set('page', page)
+      .set('size', size);
+    return this.http.get<any>(this.apiUrl, { params });
+>>>>>>> feature/add-new-book-modification
   }
 
   getBookById(id: number): Observable<any> {
@@ -30,6 +38,7 @@ export class BookService {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
+<<<<<<< HEAD
   searchBooks(title: string): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/search?title=${title}`);
   }
@@ -39,5 +48,13 @@ export class BookService {
       .set('page', page)
       .set('size', size);
     return this.http.get<any>(`${this.apiUrl}/page`, { params });
+=======
+  searchBooks(q: string, page: number, size: number): Observable<any> {
+    const params = new HttpParams()
+      .set('q', q)
+      .set('page', page)
+      .set('size', size);
+    return this.http.get<any>(this.apiUrl, { params });
+>>>>>>> feature/add-new-book-modification
   }
 }
