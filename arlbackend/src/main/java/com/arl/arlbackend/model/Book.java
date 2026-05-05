@@ -1,11 +1,8 @@
 package com.arl.arlbackend.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "books")
@@ -16,16 +13,29 @@ public class Book {
     private Long id;
 
     @NotBlank(message = "Title is required")
+    @Size(min = 2, max = 255, message = "Title must be between 2 and 255 characters")
+    @Column(nullable = false, length = 255)
     private String title;
 
     @NotBlank(message = "Author is required")
+    @Size(min = 2, max = 255, message = "Author must be between 2 and 255 characters")
+    @Column(nullable = false, length = 255)
     private String author;
 
     @NotBlank(message = "Category is required")
+    @Size(min = 2, max = 255, message = "Category must be between 2 and 255 characters")
+    @Column(nullable = false, length = 255)
     private String category;
 
     @NotBlank(message = "Description is required")
+    @Size(min = 10, message = "Description must be at least 10 characters")
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String description;
+
+    // Getters and Setters
+    public Long getId() {
+        return id;
+    }
 
     public String getTitle() {
         return title;
@@ -58,9 +68,4 @@ public class Book {
     public void setDescription(String description) {
         this.description = description;
     }
-
-    public Long getId() {
-        return id;
-    }
-
 }

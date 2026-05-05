@@ -1,23 +1,14 @@
 package com.arl.arlbackend.controller;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.PathVariable;
 import com.arl.arlbackend.model.Book;
 import com.arl.arlbackend.service.BookService;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/books")
@@ -26,40 +17,45 @@ public class BookController {
     @Autowired
     private BookService bookService;
 
+    // CREATE — returns 201 Created
     @PostMapping
-    public Book createBook(@Valid @RequestBody Book book) {
-        return bookService.saveBook(book);
+    public ResponseEntity<Book> createBook(@Valid @RequestBody Book book) {
+        Book saved = bookService.saveBook(book);
+        return ResponseEntity.status(HttpStatus.CREATED).body(saved);
     }
 
     @GetMapping
-    public List<Book> getAllBooks() {
-        return bookService.getAllBooks();
+    public ResponseEntity<Page<Book>> getAllBooks(
+            @RequestParam(required = false) String q,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size) {
+
+        PageRequest pageable = PageRequest.of(page, size);
+
+        if (q != null && !q.isBlank()) {
+            return ResponseEntity.ok(bookService.searchBooks(q, pageable));
+        }
+        return ResponseEntity.ok(bookService.getBooks(pageable));
     }
 
+    // GET by ID — returns 200 or 404 via exception
     @GetMapping("/{id}")
-    public Book getBookById(@PathVariable Long id) {
-        return bookService.getBookById(id);
+    public ResponseEntity<Book> getBookById(@PathVariable Long id) {
+        return ResponseEntity.ok(bookService.getBookById(id));
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteBook(@PathVariable Long id) {
-        bookService.deleteBook(id);
-    }
-
+    // UPDATE — returns 200
     @PutMapping("/{id}")
-    public Book updateBook(@PathVariable Long id, @Valid @RequestBody Book bookDetails) {
-        return bookService.updateBook(id, bookDetails);
+    public ResponseEntity<Book> updateBook(
+            @PathVariable Long id,
+            @Valid @RequestBody Book bookDetails) {
+        return ResponseEntity.ok(bookService.updateBook(id, bookDetails));
     }
 
-    @GetMapping("/page")
-    public Page<Book> getBooksWithPagination(
-            @PageableDefault(size = 5) Pageable pageable) {
-        return bookService.getBooks(pageable);
+    // DELETE — returns 204 No Content
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteBook(@PathVariable Long id) {
+        bookService.deleteBook(id);
+        return ResponseEntity.noContent().build();
     }
-
-    @GetMapping("/search")
-    public List<Book> searchBooks(@RequestParam String title) {
-        return bookService.searchBooks(title);
-    }
-
 }

@@ -1,0 +1,157 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 24px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.header h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1a1a2e;
+}
+
+.toolbar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.toolbar input {
+  flex: 1;
+  padding: 10px 16px;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: border 0.2s;
+}
+
+.toolbar input:focus {
+  border-color: #6c63ff;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-search {
+  background: #6c63ff;
+  color: white;
+}
+
+.btn-search:hover {
+  background: #5a52d5;
+}
+
+.btn-add {
+  background: #00b894;
+  color: white;
+}
+
+.btn-add:hover {
+  background: #00a381;
+}
+
+.btn-read {
+  background: #fdcb6e;
+  color: #2d3436;
+}
+
+.btn-read:hover {
+  background: #f9b942;
+}
+
+.btn-edit {
+  background: #74b9ff;
+  color: #2d3436;
+}
+
+.btn-edit:hover {
+  background: #0984e3;
+  color: white;
+}
+
+.btn-delete {
+  background: #ff7675;
+  color: white;
+}
+
+.btn-delete:hover {
+  background: #d63031;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+thead {
+  background: #6c63ff;
+  color: white;
+}
+
+th {
+  padding: 14px 16px;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+td {
+  padding: 14px 16px;
+  font-size: 14px;
+  color: #2d3436;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+tr:hover td {
+  background: #f8f7ff;
+}
+
+.actions {
+  display: flex;
+  gap: 6px;
+}
+
+.actions button {
+  padding: 6px 12px;
+  font-size: 13px;
+  border-radius: 6px;
+}
+
+.empty {
+  text-align: center;
+  padding: 40px;
+  color: #b2bec3;
+  font-size: 15px;
+}

@@ -1,15 +1,12 @@
 package com.arl.arlbackend.service;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.arl.arlbackend.exception.ResourceNotFoundException;
 import com.arl.arlbackend.model.Book;
 import com.arl.arlbackend.repository.BookRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 @Service
 public class BookService {
@@ -21,8 +18,8 @@ public class BookService {
         return bookRepository.save(book);
     }
 
-    public List<Book> getAllBooks() {
-        return bookRepository.findAll();
+    public Page<Book> getBooks(Pageable pageable) {
+        return bookRepository.findAll(pageable);
     }
 
     public Book getBookById(Long id) {
@@ -30,31 +27,22 @@ public class BookService {
                 .orElseThrow(() -> new ResourceNotFoundException("Book not found with id " + id));
     }
 
+    public Book updateBook(Long id, Book bookDetails) {
+        // throws 404 if not found instead of returning null
+        Book book = getBookById(id);
+        book.setTitle(bookDetails.getTitle());
+        book.setAuthor(bookDetails.getAuthor());
+        book.setCategory(bookDetails.getCategory());
+        book.setDescription(bookDetails.getDescription());
+        return bookRepository.save(book);
+    }
+
     public void deleteBook(Long id) {
+        getBookById(id); // throws 404 if not found
         bookRepository.deleteById(id);
     }
 
-    public Book updateBook(Long id, Book bookDetails) {
-        Book book = bookRepository.findById(id).orElse(null);
-
-        if (book != null) {
-            book.setTitle(bookDetails.getTitle());
-            book.setAuthor(bookDetails.getAuthor());
-            book.setCategory(bookDetails.getCategory());
-            book.setDescription(bookDetails.getDescription());
-
-            return bookRepository.save(book);
-        }
-
-        return null;
+    public Page<Book> searchBooks(String q, Pageable pageable) {
+        return bookRepository.findByTitleContainingIgnoreCase(q, pageable);
     }
-
-    public Page<Book> getBooks(Pageable pageable) {
-        return bookRepository.findAll(pageable);
-    }
-
-    public List<Book> searchBooks(String title) {
-        return bookRepository.findByTitleContaining(title);
-    }
-
 }

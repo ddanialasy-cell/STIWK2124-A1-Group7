@@ -1,0 +1,78 @@
+<div class="container">
+  <div class="header">
+    <h1>Accessible Reading List</h1>
+  </div>
+
+  <!-- Error Banner -->
+  <div *ngIf="errorMessage" style="background:#ff7675; color:white; padding:12px 16px;
+       border-radius:8px; margin-bottom:16px;">
+    ⚠️ {{ errorMessage }}
+  </div>
+
+  <div class="toolbar">
+    <input [(ngModel)]="searchTitle" placeholder="Search by title..."
+           (keyup.enter)="searchBooks()" />
+    <button class="btn btn-search" (click)="searchBooks()">🔍 Search</button>
+    <button class="btn btn-add" (click)="addBook()">+ Add Book</button>
+  </div>
+
+  <app-book-form *ngIf="showForm"
+    [book]="selectedBook"
+    (close)="onFormClose()">
+  </app-book-form>
+
+  <!-- Results count -->
+  <p style="font-size:13px; color:#636e72; margin-bottom:12px;">
+    Showing {{ books.length }} of {{ totalElements }} books
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Category</th>
+        <th>Description</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let book of books">
+        <td><strong>{{ book.title }}</strong></td>
+        <td>{{ book.author }}</td>
+        <td>{{ book.category }}</td>
+        <td>{{ book.description }}</td>
+        <td class="actions">
+          <button class="btn btn-read" (click)="readAloud(book)">🔊 Read</button>
+          <button class="btn btn-edit" (click)="editBook(book)">✏️ Edit</button>
+          <button class="btn btn-delete" (click)="deleteBook(book.id)">🗑️</button>
+        </td>
+      </tr>
+      <tr *ngIf="books.length === 0">
+        <td colspan="5" class="empty">No books found. Add one!</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Pagination Controls -->
+  <div *ngIf="totalPages > 1" style="display:flex; justify-content:center;
+       align-items:center; gap:8px; margin-top:20px;">
+    <button class="btn btn-search"
+            (click)="goToPage(0)"
+            [disabled]="currentPage === 0">⏮ First</button>
+    <button class="btn btn-search"
+            (click)="goToPage(currentPage - 1)"
+            [disabled]="currentPage === 0">← Prev</button>
+
+    <span style="padding:10px 16px; font-size:14px; color:#636e72;">
+      Page {{ currentPage + 1 }} of {{ totalPages }}
+    </span>
+
+    <button class="btn btn-search"
+            (click)="goToPage(currentPage + 1)"
+            [disabled]="currentPage === totalPages - 1">Next →</button>
+    <button class="btn btn-search"
+            (click)="goToPage(totalPages - 1)"
+            [disabled]="currentPage === totalPages - 1">Last ⏭</button>
+  </div>
+</div>
