@@ -44,7 +44,7 @@ POST /api/books
 
 {   
     "bookTitle": "Available", 
-    "bookDescription": "Thsi book is about coding", 
+    "bookDescription": "This book is about coding", 
     "bookCategory": "Educational", 
     "bookGenre": "Comedy", 
     "bookPublishDate": "10/10/1010"
