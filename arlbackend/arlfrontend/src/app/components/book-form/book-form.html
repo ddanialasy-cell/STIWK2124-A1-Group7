@@ -1,28 +1,52 @@
 <div class="form-container">
   <h2>{{ book ? '✏️ Edit Book' : '➕ Add New Book' }}</h2>
 
+  <!-- General error banner -->
+  <div *ngIf="submitError" style="background:#ff7675; color:white; padding:10px 14px;
+       border-radius:8px; margin-bottom:16px; font-size:14px;">
+    ⚠️ {{ submitError }}
+  </div>
+
   <div class="form-group">
     <label>Title</label>
-    <input [(ngModel)]="formData.title" placeholder="Enter book title" />
+    <input [(ngModel)]="formData.title" placeholder="Enter book title"
+           [style.border-color]="validationErrors['title'] ? 'red' : ''" />
+    <small style="color:red" *ngIf="validationErrors['title']">
+      {{ validationErrors['title'] }}
+    </small>
   </div>
 
   <div class="form-group">
     <label>Author</label>
-    <input [(ngModel)]="formData.author" placeholder="Enter author name" />
+    <input [(ngModel)]="formData.author" placeholder="Enter author name"
+           [style.border-color]="validationErrors['author'] ? 'red' : ''" />
+    <small style="color:red" *ngIf="validationErrors['author']">
+      {{ validationErrors['author'] }}
+    </small>
   </div>
 
   <div class="form-group">
     <label>Category</label>
-    <input [(ngModel)]="formData.category" placeholder="e.g. Technology, Fiction..." />
+    <input [(ngModel)]="formData.category" placeholder="e.g. Technology, Fiction..."
+           [style.border-color]="validationErrors['category'] ? 'red' : ''" />
+    <small style="color:red" *ngIf="validationErrors['category']">
+      {{ validationErrors['category'] }}
+    </small>
   </div>
 
   <div class="form-group">
     <label>Description</label>
-    <textarea [(ngModel)]="formData.description" placeholder="Short description..."></textarea>
+    <textarea [(ngModel)]="formData.description" placeholder="Short description..."
+              [style.border-color]="validationErrors['description'] ? 'red' : ''"></textarea>
+    <small style="color:red" *ngIf="validationErrors['description']">
+      {{ validationErrors['description'] }}
+    </small>
   </div>
 
   <div class="form-buttons">
-    <button class="btn-submit" (click)="submit()">{{ book ? 'Update' : 'Add Book' }}</button>
+    <button class="btn-submit" (click)="submit()">
+      {{ book ? 'Update' : 'Add Book' }}
+    </button>
     <button class="btn-cancel" (click)="cancel()">Cancel</button>
   </div>
 </div>
