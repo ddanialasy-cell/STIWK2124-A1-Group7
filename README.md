@@ -47,9 +47,9 @@ Content-Type: application/json
 
 {
   "title": "Clean Code",
-  "author": "Robert C. Martin",
+  "author": "Dr Pro Gamming",
   "category": "Programming",
-  "description": "A handbook of agile software craftsmanship"
+  "description": "A handbook of useful agile software craftsmanship"
 }
 
 Response: 201 Created
@@ -91,10 +91,10 @@ PUT /api/books/{id}
 Content-Type: application/json
 
 {
-  "title": "Updated Title",
+  "title": "Updated Book Title",
   "author": "Updated Author",
   "category": "Education",
-  "description": "Updated description here"
+  "description": "Updated book description here"
 }
 
 Response: 200 OK
@@ -135,12 +135,6 @@ Validation:
 
 ---
 
-##  Conclusion
-
-This API successfully implements CRUD operations with validation, pagination, search, and proper error handling using Spring Boot and MySQL.
-
----
-
 ## Group Member
 
 1. Muhammad Danial Asyraf Bin Azhar 304586 
@@ -148,5 +142,11 @@ This API successfully implements CRUD operations with validation, pagination, se
 3. Ng Ee Jing 305874 
 4. Hazaruddin bin Mazlan 306120 
 5. Justin Abraham Unggun anak Numpang 306087 
+
+---
+
+##  Conclusion
+
+This API successfully implements CRUD operations with validation, pagination, search, and proper error handling using Spring Boot and MySQL.
 
 ---
