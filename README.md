@@ -18,8 +18,7 @@ Java, Spring Boot, Spring Data JPA, MySQL, Maven, Postman
 
 ### 1. Clone Repository
 
-git clone https://github.com/ddanialasy-cell/STIWK2124-A1-Group7.git
-cd STIWK2124-A1-Group7
+cd into desired directory and git clone https://github.com/ddanialasy-cell/STIWK2124-A1-Group7.git, and then [cd STIWK2124-A1-Group7]
 
 ### 2. Create Database
 
@@ -27,10 +26,9 @@ CREATE DATABASE arl_db;
 
 ### 3. Configure (application.properties)
 
-spring.datasource.url=jdbc:mysql://localhost:3306/arl_db
-spring.datasource.username=YOUR_USERNAME
-spring.datasource.password=YOUR_PASSWORD
-spring.jpa.hibernate.ddl-auto=update
+spring.datasource.url=jdbc:mysql://localhost:3306/arl_db [Make sure localhost port is the same as MySQL port]
+spring.datasource.username= [insert your MySQL username here]
+spring.datasource.password= [insert your MySQL password here]
 
 ### 4. Run Project
 
@@ -40,32 +38,36 @@ Server: http://localhost:8080
 
 ##  API Endpoints
 
-### Create
+### Create a Book
 
 POST /api/books
-{
-"title": "Clean Code",
-"author": "Robert C. Martin",
-"category": "Programming",
-"description": "Best coding practices"
+
+{   
+    "bookTitle": "Available", 
+    "bookDescription": "This book fucking sucks lmao", 
+    "bookCategory": "Educational", 
+    "bookGenre": "Comedy", 
+    "bookPublishDate": "10/10/1010"
 }
 
-### Get All
+### Get all Books
 
 GET /api/books
 
-### Get by ID
+### Get by Book ID
 
 GET /api/books/{id}
 
 ### Update
 
 PUT /api/books/{id}
-{
-"title": "Updated Book",
-"author": "New Author",
-"category": "Education",
-"description": "Updated description"
+
+{   
+    "bookTitle": "Dead", 
+    "bookDescription": "This book so fucking sucks lmao", 
+    "bookCategory": "Inspring", 
+    "bookGenre": "Tradegy", 
+    "bookPublishDate": "11/10/1010"
 }
 
 ### Delete
@@ -78,7 +80,7 @@ GET /api/books/page?page=0&size=2
 
 ### Search
 
-GET /api/books/search?title=Clean
+GET /api/books/search?bookTitle=Dead
 
 ---
 
