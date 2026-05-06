@@ -21,9 +21,18 @@ public class BookService {
         return bookRepository.save(book);
     }
 
+<<<<<<< Updated upstream
     // 2. GET ALL
     public List<Book> getAllBooks() {
         return bookRepository.findAll();
+=======
+    public List<Book> getAllBooks() {
+        return bookRepository.findAll();
+    }
+
+    public Page<Book> getBooks(Pageable pageable) {
+        return bookRepository.findAll(pageable);
+>>>>>>> Stashed changes
     }
 
     // 3. GET BY ID
