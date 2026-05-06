@@ -64,13 +64,4 @@ public class BookController {
         return ResponseEntity.noContent().build();
     }
 
-    // 6. GET — Get Books with Pagination
-    @GetMapping("/paged")
-    public ResponseEntity<Page<Book>> getBooksPaginated(
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "5") int size) {
-        
-        PageRequest pageable = PageRequest.of(page, size);
-        return ResponseEntity.ok(bookService.getBooksPaginated(pageable));
-    }
 }
