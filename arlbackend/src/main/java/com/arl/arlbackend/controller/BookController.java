@@ -4,11 +4,10 @@ import com.arl.arlbackend.model.Book;
 import com.arl.arlbackend.service.BookService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/books")
@@ -24,18 +23,13 @@ public class BookController {
         return ResponseEntity.status(HttpStatus.CREATED).body(saved);
     }
 
+    // GET ALL & SEARCH (Replaces BOTH of your previous @GetMappings)
     @GetMapping
-    public ResponseEntity<Page<Book>> getAllBooks(
-            @RequestParam(required = false) String q,
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "5") int size) {
-
-        PageRequest pageable = PageRequest.of(page, size);
-
-        if (q != null && !q.isBlank()) {
-            return ResponseEntity.ok(bookService.searchBooks(q, pageable));
-        }
-        return ResponseEntity.ok(bookService.getBooks(pageable));
+    public ResponseEntity<List<Book>> getAllBooks(
+            @RequestParam(required = false) String q) {
+                
+        // Otherwise, return the full list of everything
+        return ResponseEntity.ok(bookService.getAllBooks());
     }
 
     // GET by ID — returns 200 or 404 via exception

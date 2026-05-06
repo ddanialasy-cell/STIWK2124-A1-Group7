@@ -4,9 +4,8 @@ import com.arl.arlbackend.exception.ResourceNotFoundException;
 import com.arl.arlbackend.model.Book;
 import com.arl.arlbackend.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import java.util.List;
 
 @Service
 public class BookService {
@@ -18,8 +17,9 @@ public class BookService {
         return bookRepository.save(book);
     }
 
-    public Page<Book> getBooks(Pageable pageable) {
-        return bookRepository.findAll(pageable);
+    // GET ALL — Returns a List instead of a Page
+    public List<Book> getAllBooks() {
+        return bookRepository.findAll();
     }
 
     public Book getBookById(Long id) {
@@ -40,9 +40,5 @@ public class BookService {
     public void deleteBook(Long id) {
         getBookById(id); // throws 404 if not found
         bookRepository.deleteById(id);
-    }
-
-    public Page<Book> searchBooks(String q, Pageable pageable) {
-        return bookRepository.findByTitleContainingIgnoreCase(q, pageable);
     }
 }
