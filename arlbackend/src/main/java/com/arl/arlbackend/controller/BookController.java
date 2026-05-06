@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/books")
@@ -17,15 +18,22 @@ public class BookController {
     @Autowired
     private BookService bookService;
 
-    // CREATE — returns 201 Created
+    // 1. POST — Create Book
     @PostMapping
     public ResponseEntity<Book> createBook(@Valid @RequestBody Book book) {
         Book saved = bookService.saveBook(book);
         return ResponseEntity.status(HttpStatus.CREATED).body(saved);
     }
 
+    // GET ALL BOOKS
     @GetMapping
-    public ResponseEntity<Page<Book>> getAllBooks(
+    public ResponseEntity<List<Book>> getAllBooks() {
+        return ResponseEntity.ok(bookService.getAllBooks());
+    }
+
+    // GET PAGINATED
+    @GetMapping("/page")
+    public ResponseEntity<Page<Book>> getBooksPaginated(
             @RequestParam(required = false) String q,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "5") int size) {
@@ -35,16 +43,17 @@ public class BookController {
         if (q != null && !q.isBlank()) {
             return ResponseEntity.ok(bookService.searchBooks(q, pageable));
         }
+
         return ResponseEntity.ok(bookService.getBooks(pageable));
     }
 
-    // GET by ID — returns 200 or 404 via exception
+    // GET by ID
     @GetMapping("/{id}")
     public ResponseEntity<Book> getBookById(@PathVariable Long id) {
         return ResponseEntity.ok(bookService.getBookById(id));
     }
 
-    // UPDATE — returns 200
+    // UPDATE BOOK
     @PutMapping("/{id}")
     public ResponseEntity<Book> updateBook(
             @PathVariable Long id,
@@ -52,10 +61,11 @@ public class BookController {
         return ResponseEntity.ok(bookService.updateBook(id, bookDetails));
     }
 
-    // DELETE — returns 204 No Content
+    // DELETE BOOK
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteBook(@PathVariable Long id) {
         bookService.deleteBook(id);
         return ResponseEntity.noContent().build();
     }
+
 }

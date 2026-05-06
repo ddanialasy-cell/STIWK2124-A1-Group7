@@ -45,10 +45,10 @@ Server: http://localhost:8080
 
 ##  API Endpoints
 
+
 ### Create
 
 POST /api/books
-Content-Type: application/json
 
 {
   "title": "Clean Code",
@@ -61,28 +61,20 @@ Response: 201 Created
 
 ### Get All
 
-GET /api/books?page=0&size=5
+GET /api/books
 
 Response: 200 OK
-{
-  "content": [...],
-  "totalElements": 12,
-  "totalPages": 3,
-  "size": 5,
-  "number": 0
-}
 
 ### Get by ID
 
 GET /api/books/{id}
 
-Response: 200 OK
+Response: 200 OK <br>
 Response: 404 Not Found (if book does not exist)
 
 ### Update
 
 PUT /api/books/{id}
-Content-Type: application/json
 
 {
   "title": "Updated Book Title",
@@ -91,19 +83,32 @@ Content-Type: application/json
   "description": "Updated book description here"
 }
 
-Response: 200 OK
+Response: 200 OK <br>
 Response: 404 Not Found (if book does not exist)
 
 ### Delete
 
 DELETE /api/books/{id}
 
-Response: 204 No Content
+Response: 204 No Content <br>
 Response: 404 Not Found (if book does not exist)
 
-### Pagination
+### Search & Pagination
 
-GET /api/books/page?page=0&size=2
+GET /api/books/page?q=clean&page=0&size=2
+
+{
+  "content": [...],
+  "totalElements": 2,
+  "totalPages": 1
+}
+
+Response: 200 OK
+
+> [!NOTE]
+> - page: The page index you want to view (starts at 0 for the first page).  
+> - size: The number of books per page (e.g., size=2 returns two books).  
+> - q (Optional): A search keyword to filter books by title.
 
 page: The page index you want to view (starts at 0 for the first page).  
 size: The number of books per page (e.g., size=2 returns two books).  
