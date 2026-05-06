@@ -45,6 +45,7 @@ Server: http://localhost:8080
 
 ##  API Endpoints
 
+
 ### Create
 
 POST /api/books
@@ -60,16 +61,9 @@ Response: 201 Created
 
 ### Get All
 
-GET /api/books?page=0&size=5
+GET /api/books
 
 Response: 200 OK
-{
-  "content": [...],
-  "totalElements": 12,
-  "totalPages": 3,
-  "size": 5,
-  "number": 0
-}
 
 ### Search Books (with pagination)
 
@@ -123,9 +117,9 @@ GET /api/books/page?q=clean&page=0&size=2
 Response: 200 OK
 
 > [!NOTE]
->page: The page index you want to view (starts at 0 for the first page).  
-> size: The number of books per page (e.g., size=2 returns two books).  
->q (Optional): A search keyword to filter books by title.
+> -page: The page index you want to view (starts at 0 for the first page).  
+> -size: The number of books per page (e.g., size=2 returns two books).  
+> -q (Optional): A search keyword to filter books by title.
 
 ---
 
