@@ -122,9 +122,10 @@ GET /api/books/page?q=clean&page=0&size=2
 
 Response: 200 OK
 
-page: The page index you want to view (starts at 0 for the first page).  
-size: The number of books per page (e.g., size=2 returns two books).  
-q (Optional): A search keyword to filter books by title.
+> [!NOTE]
+>page: The page index you want to view (starts at 0 for the first page).  
+> size: The number of books per page (e.g., size=2 returns two books).  
+>q (Optional): A search keyword to filter books by title.
 
 ---
 
