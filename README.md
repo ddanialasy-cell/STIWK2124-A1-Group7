@@ -80,7 +80,7 @@ Response: 200 OK
 
 GET /api/books/{id}
 
-Response: 200 OK
+Response: 200 OK <br>
 Response: 404 Not Found (if book does not exist)
 
 ### Update
@@ -94,14 +94,14 @@ PUT /api/books/{id}
   "description": "Updated book description here"
 }
 
-Response: 200 OK
+Response: 200 OK <br>
 Response: 404 Not Found (if book does not exist)
 
 ### Delete
 
 DELETE /api/books/{id}
 
-Response: 204 No Content
+Response: 204 No Content <br>
 Response: 404 Not Found (if book does not exist)
 
 ### Search & Pagination
@@ -117,9 +117,9 @@ GET /api/books/page?q=clean&page=0&size=2
 Response: 200 OK
 
 > [!NOTE]
-> -page: The page index you want to view (starts at 0 for the first page).  
-> -size: The number of books per page (e.g., size=2 returns two books).  
-> -q (Optional): A search keyword to filter books by title.
+> - page: The page index you want to view (starts at 0 for the first page).  
+> - size: The number of books per page (e.g., size=2 returns two books).  
+> - q (Optional): A search keyword to filter books by title.
 
 ---
 
