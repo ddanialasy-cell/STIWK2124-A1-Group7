@@ -72,17 +72,6 @@ Response: 200 OK
   "number": 0
 }
 
-### Search Books (with pagination)
-
-GET /api/books?q=clean&page=0&size=5
-
-Response: 200 OK
-{
-  "content": [...],
-  "totalElements": 2,
-  "totalPages": 1
-}
-
 ### Get by ID
 
 GET /api/books/{id}
@@ -115,6 +104,10 @@ Response: 404 Not Found (if book does not exist)
 ### Pagination
 
 GET /api/books/page?page=0&size=2
+
+page: The page index you want to view (starts at 0 for the first page).  
+size: The number of books per page (e.g., size=2 returns two books).  
+q (Optional): A search keyword to filter books by title.
 
 ---
 
