@@ -48,7 +48,6 @@ Server: http://localhost:8080
 ### Create
 
 POST /api/books
-Content-Type: application/json
 
 {
   "title": "Clean Code",
@@ -93,7 +92,6 @@ Response: 404 Not Found (if book does not exist)
 ### Update
 
 PUT /api/books/{id}
-Content-Type: application/json
 
 {
   "title": "Updated Book Title",
@@ -115,6 +113,8 @@ Response: 404 Not Found (if book does not exist)
 ### Pagination
 
 GET /api/books/page?page=0&size=2
+where page = 
+size = object/page
 
 ---
 
