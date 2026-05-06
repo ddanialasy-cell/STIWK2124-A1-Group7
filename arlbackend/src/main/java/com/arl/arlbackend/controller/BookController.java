@@ -40,6 +40,10 @@ public class BookController {
 
         PageRequest pageable = PageRequest.of(page, size);
 
+        if (q != null && !q.isBlank()) {
+            return ResponseEntity.ok(bookService.searchBooks(q, pageable));
+        }
+
         return ResponseEntity.ok(bookService.getBooks(pageable));
     }
 
