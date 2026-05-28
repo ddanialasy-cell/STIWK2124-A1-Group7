@@ -1,33 +1,7 @@
 CREATE TABLE IF NOT EXISTS books (
     bookID BIGINT AUTO_INCREMENT PRIMARY KEY,
     bookTitle VARCHAR(255) NOT NULL,
-    bookDescription TEXT NOT NULL,
-    bookCategory VARCHAR(255) NOT NULL,
-    bookGenre VARCHAR(255) NOT NULL,
-    bookPublishDate VARCHAR(255) NOT NULL,
-    publisherID BIGINT,
-    FOREIGN KEY (publisherID) REFERENCES publishers(publisherID) ON DELETE SET NULL,
-    authorID BIGINT,
-    FOREIGN KEY (authorID) REFERENCES authors(authorID) ON DELETE SET NULL
-);
-
-CREATE TABLE IF NOT EXISTS authors (
-    authorID BIGINT AUTO_INCREMENT PRIMARY KEY,
-    authorName VARCHAR(255) NOT NULL,
-    authorNationality VARCHAR(255) NOT NULL,
-    bookID BIGINT,
-    FOREIGN KEY (bookID) REFERENCES books(bookID) ON DELETE CASCADE
-);
-
-CREATE TABLE IF NOT EXISTS publishers (
-    publisherID BIGINT AUTO_INCREMENT PRIMARY KEY,
-    publisherName VARCHAR(255) NOT NULL,
-    publisherContact VARCHAR(255) NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS book_copy (
-    copyID BIGINT AUTO_INCREMENT PRIMARY KEY,
-    bookID BIGINT NOT NULL,
-    copyStatus VARCHAR(255) NOT NULL,
-    FOREIGN KEY (bookID) REFERENCES books(bookID) ON DELETE CASCADE
+    bookAuthor VARCHAR(255) NOT NULL,
+    bookDescription VARCHAR(500) NOT NULL,
+    bookCategory VARCHAR(20) NOT NULL
 );

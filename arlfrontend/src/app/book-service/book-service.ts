@@ -13,7 +13,7 @@ export class BookService {
 
   constructor(private http: HttpClient) {}
 
-  getBooks(page: number = 0, size: number = 20, search?: string): Observable<BookPageResponse> {
+  getBooks(page: number = 0, size: number = 10, search?: string): Observable<BookPageResponse> {
     let params = new HttpParams().set('page', page.toString()).set('size', size.toString());
 
     if (search && search.trim() !== '') {

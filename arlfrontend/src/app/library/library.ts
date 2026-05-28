@@ -61,22 +61,4 @@ export class Library implements OnInit{
       this.cdr.detectChanges();
     }
   }
-  
-  /* loadBooks(): void {
-    this.bookService.getBooks(this.currentPage, this.pageSize, this.searchTitle).subscribe({
-      next: (data) => {
-        this.books = data.content;
-        this.cdr.detectChanges();
-      },
-
-      error: (err) => {
-        console.error('Error fetching books', err);
-      }
-    });
-  }
-
-  searchBook(): void {
-    this.currentPage = 0;
-    this.loadBooks();
-  } */
 }
