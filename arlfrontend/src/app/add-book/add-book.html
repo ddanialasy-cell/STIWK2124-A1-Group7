@@ -1,0 +1,37 @@
+<div class = "container">
+    @if (addSuccess()) {
+        <div class = "d-flex align-items-center justify-content-center py-3 my-5 ani">
+            <div class="alert alert-primary animate-fade" role="alert">
+                {{addSuccess()}} 
+                <a href="/library" class="alert-link">View in Library</a>
+            </div>
+        </div>
+    }
+
+    <!--<div class = "d-flex align-items-center justify-content-center py-3 my-5">
+        <div class="alert alert-primary" role="alert">
+            A simple primary alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like
+        </div>
+    </div> -->
+    <div class = "d-flex align-items-center justify-content-center py-3 my-5">
+        <form class = "border rounded p-3 bg-body-secondary w-75 border border-dark" #bookForm = "ngForm" (ngSubmit)="bookForm.form.valid && addBook()">
+            <h4 class = 'ps-3'><b>Add Book</b></h4>
+            <div class = "mb-3 p-3">
+                <label for = "bookTitleInput" class  = "form-label text-black">Book Title</label>
+                <input type = "text" class = "form-control border border-dark" id = "bookTitleInput" name = "bookTitle" [(ngModel)] = "newBook.bookTitle" #title = "ngModel" required minlength="1" maxlength = "255" [placeholder] = "title.invalid ? 'Title is Required' : 'Enter book title'" [class.is-invalid] = "title.invalid">
+            </div>
+            <div class = "mb-3 p-3">
+                <label for = "bookAuthorInput" class  = "form-label text-black">Book Author</label>
+                <input type = "text" class = "form-control border border-dark" id = "bookAuthorInput" name = "bookAuthor" [(ngModel)] = "newBook.bookAuthor" #author = "ngModel" required minlength="1" maxlength = "255" [placeholder] = "title.invalid ? 'Author is Required' : 'Enter book author'" [class.is-invalid] = "author.invalid">
+            </div>
+            <div class = "mb-3 p-3">
+                <label for = "bookDescriptionInput" class  = "form-label text-black">Book Description</label>
+                <input type = "text" class = "form-control border border-dark" id = "bookDescriptionInput" name = "bookDescription" [(ngModel)] = "newBook.bookDescription" #desc = "ngModel" required minlength="1" maxlength = "500" [placeholder] = "desc.invalid ? 'Title is Required' : 'Enter book description'" [class.is-invalid] = "desc.invalid">            </div>
+            <div class = "mb-3 p-3">
+                <label for = "bookCategoryInput" class  = "form-label text-black">Book Category</label>
+                <input type = "text" class = "form-control border border-dark" id = "bookCategoryInput" name = "bookCategory" [(ngModel)] = "newBook.bookCategory" #category = "ngModel" required minlength="1" maxlength = "20" [placeholder] = "category.invalid ? 'Category is Required' : 'Enter book category'" [class.is-invalid] = "category.invalid">
+            </div>
+            <button type="submit" class="btn btn-success border border-black text-black mx-3" [disabled]="bookForm.invalid">Submit</button>
+        </form>
+    </div>
+</div>
